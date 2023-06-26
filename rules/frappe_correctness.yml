@@ -303,6 +303,12 @@ rules:
           $DOC.insert(...)
       - pattern: |
           frappe.get_doc(...).insert(...)
+      - pattern: |
+          $DOC = frappe.get_doc({...})
+          ...
+          $DOC.save(...)
+      - pattern: |
+          frappe.get_doc({...}).save(...)
   message: |
     `get_doc` should not be used for creating new document, use `new_doc` instead.
   languages: [python]
