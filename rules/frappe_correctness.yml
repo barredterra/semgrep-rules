@@ -368,3 +368,18 @@ rules:
   severity: ERROR
   fix: |
     @whitelist_for_tests(...)
+
+- id: frappe-dialog-primary-action-get-values
+  patterns:
+    - pattern: $DIALOG.get_values()
+    - pattern-either:
+      - pattern-inside: |
+          {..., primary_action: function (...) { ... }, ...}
+      - pattern-inside: |
+          {..., primary_action: (...) => ..., ...}
+      - pattern-inside: $D.set_primary_action($LABEL, function (...) { ... })
+      - pattern-inside: $D.set_primary_action($LABEL, (...) => ...)
+  message: |
+    The dialog already calls `get_values()` and passes the values to the primary action. Use the first argument of the primary action instead. A second call can return `null` when a field has a pending value (for example a Table MultiSelect field during link validation).
+  languages: [javascript]
+  severity: WARNING
