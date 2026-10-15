@@ -41,3 +41,16 @@ dialog.set_primary_action(__("Save"), (values) => save_quick_entry(frm, values))
 
 // ok: frappe-dialog-primary-action-get-values
 const values = dialog.get_values();
+
+const d4 = new frappe.ui.Dialog({
+	fields: [
+		{
+			fieldname: "item_code",
+			onchange: () => {
+				// ok: frappe-dialog-primary-action-get-values
+				const values = d4.get_values();
+			},
+		},
+	],
+	primary_action: function (data) {},
+});
