@@ -54,3 +54,6 @@ const d4 = new frappe.ui.Dialog({
 	],
 	primary_action: function (data) {},
 });
+
+// ok: frappe-dialog-primary-action-get-values
+dialog.set_primary_action(__("Save"), save.bind(null, dialog.get_values()));
